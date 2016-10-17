@@ -11,7 +11,7 @@
  angular.module('dashMetricsApp')
    .controller('MainCtrl', function ($scope, $http) {
          // Hard coded data
-         $http.get('data/bricks.json').
+         $http.get('data/keymetrics.json').
           success(function(data, status, headers, config) {
             $scope.main = data;
           }).
@@ -124,7 +124,54 @@
  };
 
   })
-  .controller('DonutChartCtrl', function($scope){
+  .controller('DonutChartCtrl', function($scope, $http, $timeout){
+
+   var xval,yval;
+   var chartdata = [];
+    $http.get('data/issuebreakdown.csv').
+    success(function(data) {
+      $scope.main = data;
+
+      // Split the lines
+    var lines = data.split('\n');
+
+    // header line containes categories
+     angular.forEach(lines, function(value, key) {
+
+      var line =value.toString();
+      var items = line.split(',');
+
+       if (key != 0) {
+           angular.forEach(items, function(item,itemNo) {
+
+
+
+                 if (itemNo == 0 && item!="" ){
+                  xval = item;
+                  //  console.log ("Item xval:" +item)
+                  // chartdata.push ({name: xval })
+                  // console.log ("chartdata after xval:" +chartdata)
+
+               }
+               else if (itemNo ==1 && item!="" ){
+                 yval = item;
+                //  console.log ("Item yval:" +item)
+                //
+                //  console.log ("chartdata after yval:" +chartdata)
+               }
+              chartdata.push ({name: xval, y: yval })
+           });
+       }
+
+
+     });
+
+    }).
+    error(function(data, status, headers, config) {
+      // log error
+   });
+
+
   	$scope.title = "My Daily Activities";
   	$scope.chartConfig = {
           options: {
@@ -157,22 +204,23 @@
           series: [{
               colorByPoint: true,
               innerSize: '70%',
-              data: [{
-                  name: "Work",
-                  y: 11
-              }, {
-                  name: "Eat",
-                  y: 2
-              }, {
-                  name: "Commute",
-                  y: 2
-              }, {
-                  name: "Watch TV",
-                  y: 2
-              }, {
-                  name: "Sleep",
-                  y: 7
-              }]
+              data: chartdata
+              // data: [{
+              //     name: "IOS 10",
+              //     y: 11
+              // }, {
+              //     name: "Android",
+              //     y: 2
+              // }, {
+              //     name: "Web V1.5.3",
+              //     y: 2
+              // }, {
+              //     name: "Web V1.5.6",
+              //     y: 2
+              // }, {
+              //     name: "Web V1.5.7",
+              //     y: 7
+              // }]
           }],
 
       };
@@ -186,7 +234,7 @@
           $http.get('data/customercount.csv').
            success(function(data, status, headers, config) {
             $scope.main = data;
-            console.log("Data:" + data);
+
             // Split the lines
           var lines = data.split('\n');
 
@@ -196,19 +244,15 @@
             var line =value.toString();
 
              var items = line.split(',');
-                console.log("items:" + items);
-              // header line containes categories
+
              if (key != 0) {
                  angular.forEach(items, function(item,itemNo) {
-                     console.log("item:" + item);
-                     console.log("itemNo:" + itemNo);
-                     if (itemNo ==0 && item!="" ){
+                       if (itemNo ==0 && item!="" ){
                       categories.push(item);
 
                      }
                      else if (itemNo ==1 && item!="" ){
-
-                        seriesdata.push(parseFloat(item));
+                       seriesdata.push(parseFloat(item));
                      }
 
                  });
@@ -216,8 +260,8 @@
 
 
            });
-            console.log("Cat: " + categories);
-            console.log("Ser:" +seriesdata);
+            // console.log("Cat: " + categories);
+            // console.log("Ser:" +seriesdata);
             var poll = function() {
              $timeout(function() {
               //update your chart
@@ -232,16 +276,16 @@
            error(function(data, status, headers, config) {
              // log error
        });
-  	$scope.title = "Population of Largest U.S. Cities";
+  	$scope.title = "";
   	$scope.chartConfig={
   		options:{
   			chart:{
   				type:'column'
   			},
               colors:['#26B99A','#E33805','#FCD217','#7437A6','#2CD1D1'],
-  			title: {
-              	text: 'Population of Largest U.S. Cities'
-          	},
+        title:{
+        				text: ''
+        			},
             credits: {
               enabled: false
             },
@@ -251,16 +295,7 @@
 
   			 xAxis: {
              categories,
-
-              // categories: [
-              //     'Jan 2010',
-              //     'Jan 2011',
-              //     'Jan 2012',
-              //     'Jan 2013',
-              //     'Jan 2014'
-              //
-              // ],
-              crosshair: true
+            crosshair: true
           },
 
 
@@ -287,43 +322,60 @@
             data :seriesdata,
             showInLegend: false,
           }]
-  		// series: [{
-      //         name: 'New York City, NY',
-      //         data: [1499, 1715, 1064, 1292]
-      //
-      //     }, {
-      //         name: 'Los Angeles, CA',
-      //         data: [1836, 1788, 1985, 1934]
-      //
-      //     }, {
-      //         name: 'Chicago, IL',
-      //         data: [1489, 1388, 3193, 4114]
-      //
-      //     }, {
-      //         name: 'Houston, TX',
-      //         data: [4224, 3232, 3415, 3197]
-      //
-      //     }]
+
   	};
   })
+
+
+
   //chart 3
 .controller('LineGraphCtrl', function($scope,$http, $timeout){
-	$scope.title = "Atmosphere Temperature by Altitude";
+
+  var xaxisdata =[];
+    var yaxisdata =[];
+    var seriesdata =[];
+ // Get the JSON data
+        $http.get('data/issuecount.json').
+         success(function(data, status, headers, config) {
+         $scope.data = data;
+         angular.forEach(data, function(value, key){
+             var xval = data[key].datetimestamp;
+             var yval = data[key].issuecount;
+            //  console.log("Time:" + xval*1000);
+            //  console.log("Count:" + yval);
+
+             xaxisdata.push(xval*1000);
+             yaxisdata.push(yval);
+             seriesdata.push({x: parseFloat(xval),y: parseFloat(yval),});
+            //  console.log("Issues Data:" + seriesdata);
+          });
+          }).
+         error(function(data, status, headers, config) {
+           // log error
+      });
+
+
+	$scope.title = "";
 
 	$scope.chartConfig={
 		options:{
 			chart:{
 				type:'spline',
-        animations: Highcharts.svg,
-				inverted: false,
+        // animations: Highcharts.svg,
+				// inverted: false,
 
 			},
-            colors:['#09BD60'],
+      colors:['#09BD60'],
 			title:{
 				text: ''
 			},
 			xAxis: {
+            //  xaxisdata
             type:'datetime',
+            // startOnTick: true,
+            dateTimeLabelFormats: {
+                month: '%b, %Y'
+            },
             tickPixelInterval: 150
         	},
         	yAxis: {
@@ -346,36 +398,41 @@
             }
         },
         series: [{
-          name: 'Random data',
-                data: (function () {
-                    // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
+          name: 'Number of Issues',
+          // xAxis: 0,
+          data :seriesdata,
+          // data :
+          // [[1368835200000, 2.9], [1371513600000, 0.5], [1374105600000, 1.94], [1376784000000, 1.44], [1379462400000, 1.18]],
 
-                    for (i = -19; i <= 0; i += 1) {
-                      console.log ("before:" + time);
-                        data.push({
-                            x: time + i * 1000,
-                            y: Math.random()*100,
-                        });
-                        console.log ("after:" + (time + i * 1000));
-                    }
-                    return data;
-                }())
+                // data: (function () {
+                //     // generate an array of random data
+                //     var data = [],
+                //         time = (new Date()).getTime(),
+                //         i;
+                //
+                //     for (i = -19; i <= 0; i += 1) {
+                //       //console.log ("before:" + time);
+                //         data.push({
+                //             x: time + i * 1000,
+                //             y: Math.random()*100,
+                //         });
+                //       //  console.log ("after:" + (time + i * 1000));
+                //     }
+                //     return data;
+                // }())
         }]
 	};
 
-      var poll = function() {
-       $timeout(function() {
-        //update your chart
-        var x = (new Date()).getTime(), // current time
-                               y = Math.random();
-                           	$scope.chartConfig.series[0].data.push({x, y});
-         poll();
-       }, 1000);
-        };
-           poll();
+      // var poll = function() {
+      //  $timeout(function() {
+      //   //update your chart
+      //   var x = (new Date()).getTime(), // current time
+      //                          y = Math.random();
+      //                      	$scope.chartConfig.series[0].data.push({x, y});
+      //    poll();
+      //  }, 1000);
+      //   };
+      //      poll();
 
 
 })
@@ -427,95 +484,112 @@
 })
 .controller('MapController', function($http, $scope){
 
-   var mapdata = [];
-  $http.get('data/geomappopulationdensity.json').
-   success(function(data) {
-     mapdata = data;
-     console.log ("Data:" + data);
-       console.log ("MapData:" + mapdata);
-   }).
-   error(function(data, status, headers, config) {
-     // log error
-  });
+var values =[];
+var i ;
+var valuesMin;
+var valuesMax;
+
+    $http.get('data/employeepopulation.json').
+    success(function(data) {
+
+      // console.log ("Data:" + data);
+      // Populate series
+                    for (i = 0; i < data.length; i++){
+                        values.push({code: data[i].code, value: data[i].value});
+                    }
+                    console.log ("Values:" + values);
+                    //init min/max with first item
+                    valuesMin = values[0].value;
+                    valuesMax = values[0].value;
+                    // find the real min and max
+                    for(var i=0; i<=values.length-1; i++) {
+                      // save max of all interactions
+                      if (values[i].value > valuesMax) {
+                        valuesMax = values[i].value;
+                      }
+                      // save min of all interactions
+                      if (values[i].value < valuesMin) {
+                        valuesMin = values[i].value;
+                      }
+                      console.log ("Maximum :" + valuesMax);
+                      console.log ("Minimum :" + valuesMin);
+
+                    }
 
 
-  // Prepare demo data
-  var data = [
-      {
-          "hc-key": "eu",
-          "value": 20
-      },
-      {
-          "hc-key": "oc",
-          "value": 1
-      },
-      {
-          "hc-key": "af",
-          "value": 2
-      },
-      {
-          "hc-key": "as",
-          "value": 3
-      },
-      {
-          "hc-key": "na",
-          "value": 4
-      },
-      {
-          "hc-key": "sa",
-          "value": 5
-      }
-  ];
+    }).
+    error(function(data, status, headers, config) {
+      // log error
+   });
 
-      $scope.Mapconfig = {
+  $scope.config = {
 
-          chartType: 'map',
-          title: {
-              text: 'Highcharts-ng map example'
-          },
-          title: {
-              text: 'Highcharts-ng map example'
-          },
+
+      options: {
           legend: {
-              enabled:false
+              enabled: false
+          },
+          lang: {
+             thousandsSep: ';'
           },
 
-          mapNavigation: {
-            enabled: true,
-            buttonOptions: {
-                verticalAlign: 'bottom'
-            }
+
+            colorAxis: {
+            minColor: '#c4f3e9',
+            maxColor: '#125749',
+            startOnTick: false,
+            endOnTick: false,
+            min: valuesMin,
+            max: valuesMax,
+            minorTickInterval: 0.1,
+            tickLength: 0,
+          },
+
+          plotOptions: {
+              map: {
+                  mapData: Highcharts.maps['custom/world'],
+                  joinBy: ['name']
+              }
+
+          },
+
+      },
+      chartType: 'map',
+
+      title: {
+          text: ''
+      },
+
+
+  plotOptions: {
+    map: {
+      states: {
+        hover: {
+          enabled: false
         },
+        normal: {
+          animation: false
+        }
+      }
+    }
+  },
 
-        colorAxis: {
-            min: 0,
-            stops: [
-                       [0, '#EFEFFF'],
-                       [0.5, Highcharts.getOptions().colors[0]],
-                       [1, Highcharts.Color(Highcharts.getOptions().colors[0]).brighten(-0.5).get()]
-                   ]
-        },
+      series: [
 
-
-        series: [{
-          color: '#26B99A',
-            data: mapdata,
-            mapData: Highcharts.maps['custom/world'],
-            joinBy: ['iso-a2', 'code'],
-            // joinBy: 'hc-key',
-            name: 'Random data',
-            states: {
-                hover: {
-                    color: '#000000'
+          {
+            name:'Number of Employees',
+           mapData: Highcharts.maps['custom/world'],
+           nullColor: 'white',
+           data : values,
+           joinBy: ['iso-a2', 'code'],
+           states: {
+                    hover: {
+                        color: '#b4f0e3'
+                    }
                 }
-            },
-            dataLabels: {
-                enabled: false,
-                format: '{point.name}'
-            },
-            showInLegend: false
-        }]
-      };
+         }
+      ]
+  };
 
 
 })

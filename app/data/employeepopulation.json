@@ -4,12 +4,31 @@
 	  "value": 743
 	},
 	{
+		"code": "CA",
+		"value": 4
+		},
+
+	{
+			"code": "CN",
+			"value": 143
+	},
+	{
 		"code": "FR",
 		"value": 8205
+	},
+
+	{
+		"code": "CH",
+		"value": 196
+
 	},
 	{
 		"code": "DE",
 		"value": 2303
+	},
+	{
+	    "code": "DJ",
+	    "value": 873
 	},
 	{
 		"code": "BR",
@@ -33,10 +52,18 @@
 	},
 	{
 		"code": "US",
-		"value": 3078
+		"value": 30078
 	},
 	{
 		"code": "IN",
-		"value": 394
+		"value": 1394
+	},
+	{
+		"code": "ID",
+		"value": 132
+	},
+	{
+		"code": "VN",
+		"value": 280
 	}
 ]

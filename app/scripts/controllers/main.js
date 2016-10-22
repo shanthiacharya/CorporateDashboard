@@ -126,7 +126,7 @@
   })
   .controller('DonutChartCtrl', function($scope, $http, $timeout){
 
-   var xval,yval;
+   var xval,yval,i;
    var chartdata = [];
     $http.get('data/issuebreakdown.csv').
     success(function(data) {
@@ -143,27 +143,15 @@
 
        if (key != 0) {
            angular.forEach(items, function(item,itemNo) {
-
-
-
-                 if (itemNo == 0 && item!="" ){
-                  xval = item;
-                  //  console.log ("Item xval:" +item)
-                  // chartdata.push ({name: xval })
-                  // console.log ("chartdata after xval:" +chartdata)
-
+             if (itemNo == 0 && item!="" ){
+              xval = item;
                }
-               else if (itemNo ==1 && item!="" ){
-                 yval = item;
-                //  console.log ("Item yval:" +item)
-                //
-                //  console.log ("chartdata after yval:" +chartdata)
+           else if (itemNo ==1 && item!="" ){
+             yval = parseFloat(item);
                }
-              chartdata.push ({name: xval, y: yval })
-           });
+         });
+           chartdata.push ({name: xval, y: yval })
        }
-
-
      });
 
     }).
@@ -172,7 +160,7 @@
    });
 
 
-  	$scope.title = "My Daily Activities";
+  	$scope.title = "";
   	$scope.chartConfig = {
           options: {
               chart: {
@@ -185,7 +173,7 @@
               text: ''
           },
           tooltip: {
-              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+              pointFormat: ' <b>{point.percentage:.1f}%</b>'
           },
           plotOptions: {
               pie: {
@@ -205,22 +193,7 @@
               colorByPoint: true,
               innerSize: '70%',
               data: chartdata
-              // data: [{
-              //     name: "IOS 10",
-              //     y: 11
-              // }, {
-              //     name: "Android",
-              //     y: 2
-              // }, {
-              //     name: "Web V1.5.3",
-              //     y: 2
-              // }, {
-              //     name: "Web V1.5.6",
-              //     y: 2
-              // }, {
-              //     name: "Web V1.5.7",
-              //     y: 7
-              // }]
+
           }],
 
       };
@@ -328,26 +301,27 @@
 
 
 
-  //chart 3
+  //Line Chart
 .controller('LineGraphCtrl', function($scope,$http, $timeout){
 
-  var xaxisdata =[];
-    var yaxisdata =[];
+
+    var categories =[];
     var seriesdata =[];
  // Get the JSON data
-        $http.get('data/issuecount.json').
+        $http.get('data/issuecountbymonth.json').
          success(function(data, status, headers, config) {
          $scope.data = data;
          angular.forEach(data, function(value, key){
-             var xval = data[key].datetimestamp;
+             var xval = data[key].Month;
              var yval = data[key].issuecount;
-            //  console.log("Time:" + xval*1000);
-            //  console.log("Count:" + yval);
+             console.log("Month:" + xval);
+             console.log("Count:" + yval);
 
-             xaxisdata.push(xval*1000);
-             yaxisdata.push(yval);
-             seriesdata.push({x: parseFloat(xval),y: parseFloat(yval),});
-            //  console.log("Issues Data:" + seriesdata);
+            //  xaxisdata.push(xval);
+            //  yaxisdata.push(yval);
+             categories.push(xval);
+             seriesdata.push(parseFloat(yval));
+             console.log("Issues Data:" + seriesdata);
           });
           }).
          error(function(data, status, headers, config) {
@@ -360,7 +334,7 @@
 	$scope.chartConfig={
 		options:{
 			chart:{
-				type:'spline',
+				type:'line',
         // animations: Highcharts.svg,
 				// inverted: false,
 
@@ -370,13 +344,8 @@
 				text: ''
 			},
 			xAxis: {
-            //  xaxisdata
-            type:'datetime',
-            // startOnTick: true,
-            dateTimeLabelFormats: {
-                month: '%b, %Y'
-            },
-            tickPixelInterval: 150
+        categories,
+       crosshair: true
         	},
         	yAxis: {
             title: {
@@ -497,7 +466,7 @@ var valuesMax;
                     for (i = 0; i < data.length; i++){
                         values.push({code: data[i].code, value: data[i].value});
                     }
-                    console.log ("Values:" + values);
+                    // console.log ("Values:" + values);
                     //init min/max with first item
                     valuesMin = values[0].value;
                     valuesMax = values[0].value;
@@ -511,8 +480,8 @@ var valuesMax;
                       if (values[i].value < valuesMin) {
                         valuesMin = values[i].value;
                       }
-                      console.log ("Maximum :" + valuesMax);
-                      console.log ("Minimum :" + valuesMin);
+                      // console.log ("Maximum :" + valuesMax);
+                      // console.log ("Minimum :" + valuesMin);
 
                     }
 

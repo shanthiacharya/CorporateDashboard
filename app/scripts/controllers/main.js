@@ -9,11 +9,26 @@
  */
 
  angular.module('dashMetricsApp')
-   .controller('MainCtrl', function ($scope, $http) {
+   .controller('MainCtrl', function ($scope, $http,$timeout) {
          // Hard coded data
          $http.get('data/keymetrics.json').
           success(function(data, status, headers, config) {
             $scope.main = data;
+            var poll = function() {
+             $timeout(function() {
+              //update your chart
+              for (var i=0, t=20; i<t; i++) {
+                  data.TotalIssues= Math.round(Math.random() * 2000);
+                  data.OpenIssues= Math.round(Math.random() * 2000);
+                  data.ClosedIssues= Math.round(Math.random() * 2000);
+                  data.ResponseTime= Math.round(Math.random() * 2000);
+                  data.TotalCustomers= Math.round(Math.random() * 2000);
+                  data.NewCustomers= Math.round(Math.random() * 2000);
+                  }
+               poll();
+             }, 10*60);
+              };
+                 poll();
           }).
           error(function(data, status, headers, config) {
             // log error
@@ -152,6 +167,17 @@
          });
            chartdata.push ({name: xval, y: yval })
        }
+
+       var poll = function() {
+        $timeout(function() {
+         //update your chart
+         for (var i=0, t=5; i<t; i++) {
+               chartdata[i].y= Math.round(Math.random() * 2000);
+               }
+          poll();
+        }, 25*60);
+         };
+            poll();
      });
 
     }).
@@ -233,8 +259,6 @@
 
 
            });
-            // console.log("Cat: " + categories);
-            // console.log("Ser:" +seriesdata);
             var poll = function() {
              $timeout(function() {
               //update your chart
@@ -308,11 +332,11 @@
     var categories =[];
     var seriesdata =[];
  // Get the JSON data
-        $http.get('data/issuecountbymonth.json').
+        $http.get('data/issuecountbyyear.json').
          success(function(data, status, headers, config) {
          $scope.data = data;
          angular.forEach(data, function(value, key){
-             var xval = data[key].Month;
+             var xval = data[key].Year;
              var yval = data[key].issuecount;
              console.log("Month:" + xval);
              console.log("Count:" + yval);
@@ -322,6 +346,18 @@
              categories.push(xval);
              seriesdata.push(parseFloat(yval));
              console.log("Issues Data:" + seriesdata);
+             var poll = function() {
+              $timeout(function() {
+               //update your chart
+               for (var i=0, t=10; i<t; i++) {
+                     seriesdata[i]= Math.round(Math.random() * 100);
+                     }
+                poll();
+              }, 25*60);
+               };
+                  poll();
+
+
           });
           }).
          error(function(data, status, headers, config) {
@@ -334,28 +370,35 @@
 	$scope.chartConfig={
 		options:{
 			chart:{
-				type:'line',
+				type:'area',
         // animations: Highcharts.svg,
 				// inverted: false,
 
 			},
+      credits: {
+            enabled: false
+        },
       colors:['#09BD60'],
 			title:{
 				text: ''
 			},
 			xAxis: {
         categories,
-       crosshair: true
+        crosshair: true,
+        // startOnTick: true,
+        // endOnTick: true,
+            tickMarkPlacement: "on",
+            startOnTick: false,
+            endOnTick: false,
+            minPadding: 0,
+            maxPadding: 0,
+            align: "left"
         	},
         	yAxis: {
             title: {
                 text: 'Count'
             },
-            // labels: {
-            //     formatter: function () {
-            //         return this.value + '°';
-            //     }
-            // },
+
             lineWidth: 2
         },
 		},
@@ -367,41 +410,14 @@
             }
         },
         series: [{
-          name: 'Number of Issues',
-          // xAxis: 0,
-          data :seriesdata,
-          // data :
-          // [[1368835200000, 2.9], [1371513600000, 0.5], [1374105600000, 1.94], [1376784000000, 1.44], [1379462400000, 1.18]],
+          name: 'Number of Customers',
 
-                // data: (function () {
-                //     // generate an array of random data
-                //     var data = [],
-                //         time = (new Date()).getTime(),
-                //         i;
-                //
-                //     for (i = -19; i <= 0; i += 1) {
-                //       //console.log ("before:" + time);
-                //         data.push({
-                //             x: time + i * 1000,
-                //             y: Math.random()*100,
-                //         });
-                //       //  console.log ("after:" + (time + i * 1000));
-                //     }
-                //     return data;
-                // }())
+          data :seriesdata,
+
         }]
 	};
 
-      // var poll = function() {
-      //  $timeout(function() {
-      //   //update your chart
-      //   var x = (new Date()).getTime(), // current time
-      //                          y = Math.random();
-      //                      	$scope.chartConfig.series[0].data.push({x, y});
-      //    poll();
-      //  }, 1000);
-      //   };
-      //      poll();
+
 
 
 })
@@ -495,9 +511,14 @@ var valuesMax;
 
 
       options: {
-          legend: {
-              enabled: false
-          },
+
+        legend: {
+                  layout: 'vertical',
+                  align: 'left',
+                  verticalAlign: 'bottom'
+              },
+
+
           lang: {
              thousandsSep: ';'
           },
@@ -521,6 +542,9 @@ var valuesMax;
               }
 
           },
+          mapNavigation: {
+               enabled: true
+           },
 
       },
       chartType: 'map',

@@ -22,14 +22,14 @@
       url:'/',
       templateUrl: 'views/overview.html',
        controller: 'MainCtrl as main'
-      //  controller: ['MainCtrl as main', 'MapController as map']
+
     })
 
     $stateProvider
     .state('analytics', {
       url:'/analytics',
       templateUrl: 'views/analytics.html',
-      controller: 'MapController as map'
+      controller: 'MainCtrl as main'
 
     })
 

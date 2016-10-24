@@ -1,10 +1,10 @@
-<div class="row">
+ <div class="row">
   <div class="col-md-6 col-sm-12 col-xs-12">
     <div class="dashboard_graph" ng-controller="DonutChartCtrl as donut">
 
       <div class="row x_title">
         <div class="col-md-12">
-          <h3>Issues Breakdown <small>by products</small></h3>
+          <h2>Issues Breakdown </h2>
         </div>
       </div>
 
@@ -21,4 +21,61 @@
     </div>
   </div>
 
+
+
+
+<!---Reported Issues Bar Graph -->
+
+
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="dashboard_graph" ng-controller="IssueByRegionBarChartCtrl">
+
+			<div class="row x_title">
+				<div class="col-md-12">
+					<h2> Issues by Countries </h2>
+				</div>
+			</div>
+
+			<div class="col-md-12 col-sm-9 col-xs-12">
+				<div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
+				<div style="width: 100%;">
+					<!-- <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div> -->
+						<highchart config="chartConfig" ></highchart>
+				</div>
+			</div>
+
+
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
 </div>
+
+
+	<br/>
+
+  <!---  Reported Issues Line Graph---->
+
+
+    <div class="row" ng-controller="LineGraphIssuesAverageCtrl as line" >
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Issue Count <small>Weekly</small></h2>
+
+              <div class="clearfix"></div>
+            </div>
+
+
+            <!-- <div class="col-md-9 col-sm-9 col-xs-12"></div> -->
+              <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
+              <div style="width: 100%;">
+                <!-- <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div> -->
+                   <highchart config="chartConfig" ></highchart>
+              </div>
+
+          </div>
+        </div>
+
+   </div>

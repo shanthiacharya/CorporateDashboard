@@ -11,7 +11,7 @@
  angular.module('dashMetricsApp')
    .controller('MainCtrl', function ($scope, $http,$timeout) {
          // Hard coded data
-         $http.get('data/keymetrics.json').
+         $http.get('./data/keymetrics.json').
           success(function(data, status, headers, config) {
             $scope.main = data;
             var poll = function() {
@@ -143,7 +143,7 @@
 
    var xval,yval,i;
    var chartdata = [];
-    $http.get('data/issuebreakdown.csv').
+    $http.get('./data/issuebreakdown.csv').
     success(function(data) {
       $scope.main = data;
 
@@ -224,13 +224,15 @@
 
       };
   })
+
+  /* */
   .controller('Chart2Ctrl', function ($scope, $http, $timeout){
 
     var categories = [];
   //  var seriesdata = [];
     var seriesdata = [];
     var lineNo =0;
-          $http.get('data/customercount.csv').
+          $http.get('./data/customercount.csv').
            success(function(data, status, headers, config) {
             $scope.main = data;
 
@@ -259,16 +261,16 @@
 
 
            });
-            var poll = function() {
-             $timeout(function() {
-              //update your chart
-              for (var i=0, t=12; i<t; i++) {
-                    seriesdata[i]= Math.round(Math.random() * 2000);
-                  }
-               poll();
-             }, 100*60);
-              };
-                 poll();
+            // var poll = function() {
+            //  $timeout(function() {
+            //   //update your chart
+            //   for (var i=0, t=12; i<t; i++) {
+            //         seriesdata[i]= Math.round(Math.random() * 2000);
+            //       }
+            //    poll();
+            //  }, 100*60);
+            //   };
+            //      poll();
        }).
            error(function(data, status, headers, config) {
              // log error
@@ -316,12 +318,125 @@
               }
           },
           series:[{
+            name: "count",
             data :seriesdata,
             showInLegend: false,
           }]
 
   	};
   })
+
+
+
+
+
+
+  /* */
+  .controller('IssueByRegionBarChartCtrl', function ($scope, $http, $timeout){
+
+    var categories = [];
+  //  var seriesdata = [];
+    var seriesdata = [];
+    var lineNo =0;
+          $http.get('./data/issuecountbycountry.csv').
+           success(function(data, status, headers, config) {
+            $scope.main = data;
+
+            // Split the lines
+          var lines = data.split('\n');
+
+          // header line containes categories
+           angular.forEach(lines, function(value, key) {
+
+            var line =value.toString();
+
+             var items = line.split(',');
+
+             if (key != 0) {
+                 angular.forEach(items, function(item,itemNo) {
+                       if (itemNo ==0 && item!="" ){
+                      categories.push(item);
+
+                     }
+                     else if (itemNo ==1 && item!="" ){
+                       seriesdata.push(parseFloat(item));
+                     }
+
+                 });
+             }
+
+
+           });
+            var poll = function() {
+             $timeout(function() {
+              //update  chart
+              for (var i=0, t=7; i<t; i++) {
+                    seriesdata[i]= Math.round(Math.random() * 2000);
+                  }
+               poll();
+             }, 100*60);
+              };
+                 poll();
+       }).
+           error(function(data, status, headers, config) {
+             // log error
+       });
+    $scope.title = "";
+    $scope.chartConfig={
+      options:{
+        chart:{
+          type:'column'
+        },
+              colors:['#26B99A','#E33805','#FCD217','#7437A6','#2CD1D1'],
+        title:{
+                text: ''
+              },
+            credits: {
+              enabled: false
+            },
+          //   {
+          //     data:data
+          // },
+
+         xAxis: {
+             categories,
+            crosshair: true
+          },
+
+
+            yAxis: {
+              min: 0,
+              title: {
+                  text: ''
+              },
+              stackLabels: {
+                  enabled: true,
+                  style: {
+                      fontWeight: 'bold',
+                      color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                  }
+              }
+            }
+      },
+       plotOptions: {
+              column: {
+                  stacking: 'normal'
+              }
+          },
+          series:[{
+            data :seriesdata,
+            showInLegend: false,
+          }]
+
+    };
+  })
+
+
+
+
+
+
+
 
 
 
@@ -332,24 +447,114 @@
     var categories =[];
     var seriesdata =[];
  // Get the JSON data
-        $http.get('data/issuecountbyyear.json').
+        $http.get('./data/issuecountbyyear.json').
          success(function(data, status, headers, config) {
          $scope.data = data;
          angular.forEach(data, function(value, key){
              var xval = data[key].Year;
              var yval = data[key].issuecount;
-             console.log("Month:" + xval);
-             console.log("Count:" + yval);
 
-            //  xaxisdata.push(xval);
-            //  yaxisdata.push(yval);
              categories.push(xval);
              seriesdata.push(parseFloat(yval));
-             console.log("Issues Data:" + seriesdata);
+
+            //  var poll = function() {
+            //   $timeout(function() {
+            //    //update your chart
+            //    for (var i=0, t=10; i<t; i++) {
+            //          seriesdata[i]= Math.round(Math.random() * 100);
+            //          }
+            //     poll();
+            //   }, 25*60);
+            //    };
+            //       poll();
+
+
+          });
+          }).
+         error(function(data, status, headers, config) {
+           // log error
+      });
+
+
+	$scope.title = "";
+
+	$scope.chartConfig={
+		options:{
+			chart:{
+				type:'area',
+        // animations: Highcharts.svg,
+				// inverted: false,
+
+			},
+      credits: {
+            enabled: false
+        },
+      colors:['#26B99A','#E33805','#FCD217','#7437A6','#2CD1D1'],
+			title:{
+				text: ''
+			},
+			xAxis: {
+        categories,
+        crosshair: true,
+        // startOnTick: true,
+        // endOnTick: true,
+            tickMarkPlacement: "on",
+            startOnTick: false,
+            endOnTick: false,
+            minPadding: 0,
+            maxPadding: 0,
+            align: "left"
+        	},
+        	yAxis: {
+            title: {
+                text: 'Count'
+            },
+
+            lineWidth: 2
+        },
+		},
+		plotOptions: {
+            spline: {
+                marker: {
+                    enable: false
+                }
+            }
+        },
+        series: [{
+          name: 'Number of Customers',
+          data :seriesdata,
+          fillOpacity: 0.1
+
+        }]
+	};
+
+
+
+
+})
+
+.controller('LineGraphIssuesAverageCtrl', function($scope,$http, $timeout){
+
+
+    var categories =[];
+    var seriesdata =[];
+ // Get the JSON data
+        $http.get('./data/issuesaveragebyweek.json').
+         success(function(data, status, headers, config) {
+         $scope.data = data;
+         console.log (data)
+         angular.forEach(data, function(value, key){
+
+            var xval = data[key].day;
+             var yval = data[key].count;
+
+             categories.push(xval);
+             seriesdata.push(parseFloat(yval));
+
              var poll = function() {
               $timeout(function() {
                //update your chart
-               for (var i=0, t=10; i<t; i++) {
+               for (var i=0, t=7; i<t; i++) {
                      seriesdata[i]= Math.round(Math.random() * 100);
                      }
                 poll();
@@ -370,7 +575,7 @@
 	$scope.chartConfig={
 		options:{
 			chart:{
-				type:'area',
+				type:'line',
         // animations: Highcharts.svg,
 				// inverted: false,
 
@@ -410,7 +615,7 @@
             }
         },
         series: [{
-          name: 'Number of Customers',
+          name: 'Number of Issues',
 
           data :seriesdata,
 
@@ -421,6 +626,10 @@
 
 
 })
+
+
+
+
 //chart 4
 .controller('Chart4Ctrl', function($scope){
 	$scope.title = "Fruits Consumption";
@@ -474,7 +683,7 @@ var i ;
 var valuesMin;
 var valuesMax;
 
-    $http.get('data/employeepopulation.json').
+    $http.get('./data/employeepopulation.json').
     success(function(data) {
 
       // console.log ("Data:" + data);
@@ -543,7 +752,7 @@ var valuesMax;
 
           },
           mapNavigation: {
-               enabled: true
+               enabled: false
            },
 
       },
@@ -590,7 +799,7 @@ var valuesMax;
 .controller('DatatableCtrl', function ($http, DTOptionsBuilder, DTColumnDefBuilder) {
   var vm = this;
   vm.issues = [];
-  vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(10);
+  vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(25);
   vm.dtColumnDefs = [
 
 
@@ -602,7 +811,7 @@ var valuesMax;
   // $resource('data.json').query().$promise.then(function(persons) {
   //     vm.persons = persons;
   //  });
-   $http.get('data/mockdata.json').
+   $http.get('./data/mockdata.json').
     success(function(issues, status, headers, config) {
       vm.issues = issues;
     }).

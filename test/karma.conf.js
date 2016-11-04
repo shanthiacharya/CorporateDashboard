@@ -39,6 +39,8 @@ module.exports = function(config) {
       'bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js',
       'bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js',
       'bower_components/datatables.net-responsive/js/dataTables.responsive.js',
+      'bower_components/highcharts/highcharts.js',
+      'bower_components/highcharts-ng/dist/highcharts-ng.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

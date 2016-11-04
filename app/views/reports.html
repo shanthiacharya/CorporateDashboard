@@ -15,21 +15,24 @@
           <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="row-border hover">
               <thead>
               <tr>
-                  <th>Severity</th>
-
+                  <th>Submitted Time</th>
+                  <th>Customer</th>
+                  <th>Customer Email</th>
                   <th>Description</th>
                   <th>Status</th>
-                  <th>Recurrences</th>
-                  <th>Owner</th>
+                  <th>Closed Time</th>
+                  <th>Employee Name </th>
               </tr>
               </thead>
               <tbody>
               <tr ng-repeat="issues in showCase.issues">
-                  <td>{{ issues.Severity }}</td>
-                  <td>{{issues.Description }}</td>
-                  <td>{{ issues.Status }}</td>
-                  <td>{{ issues.Recurrences }}</td>
-                  <td>{{ issues.Owner }}</td>
+                  <td>{{ issues["Submission timestamp"] }}</td>
+                  <td>{{issues["Customer name"] }}</td>
+                  <td>{{ issues["Customer email address"] }}</td>
+                  <td>{{ issues["Description"] }}</td>
+                  <td>{{ issues["Status"] }}</td>
+                  <td>{{ issues["Closed timestamp"] }}</td>
+                  <td>{{ issues["Employee name"] }}</td>
               </tr>
               </tbody>
           </table>

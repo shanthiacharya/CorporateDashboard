@@ -1,136 +1,20 @@
-[
-  {"Severity":"P1",
-    "Status":"Open",
-    "Owner":"hhicks0",
-    "Recurrences":"20",
-    "Description":"Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus "
-  },
-
-{"Severity":"P2",
-  "Status":"In Progress",
-  "Owner":"mmarshall1",
-  "Recurrences":"5",
-  "Description":"Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede."
-},
-
-{"Severity":"P2",
-  "Status":"Resolved",
-  "Owner":"lgibson2",
-  "Recurrences":"8",
-  "Description":"Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula. "
-},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"lwagner3",
-  "Recurrences":"2",
-  "Description":"In hac habitasse platea dictumst. Etiam faucibus cursus urna."},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"spalmer4",
-  "Recurrences":"25",
-  "Description":"Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum."},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"jcollins5",
-  "Recurrences":"Never",
-  "Description":"Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. "
-},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"wjordan6",
-  "Recurrences":"3",
-  "Description":"Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue."
-},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"devans7",
-  "Recurrences":"15",
-  "Description":"In congue. Etiam justo. Etiam pretium iaculis justo."},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"ebailey8",
-  "Recurrences":"2",
-  "Description":"Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibe."},
-
-{"Severity":"P1",
-"Status":"Open",
-"Owner":"phudson9",
-"Recurrences":"24",
-"Description":"Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. "},
-
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"agraya",
-  "Recurrences":"45",
-  "Description":"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. "
-},
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"bwardb",
-  "Recurrences":"6",
-  "Description":"Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo."
-},
-
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"dhallc",
-  "Recurrences":"8"
-  ,"Description":"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus."
-},
-
-
-{"Severity":"P1",
-"Status":"Open",
-"Owner":"cwhited",
-"Recurrences":"10",
-"Description":"Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat."
-},
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"mmartineze",
-  "Recurrences":"12",
-  "Description":"Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. "
-},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"lrosef",
-  "Recurrences":"19",
-  "Description":"Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat."
-},
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"jjordang",
-  "Recurrences":"6",
-  "Description":"In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus."
-},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"bfosterh",
-  "Recurrences":"28",
-  "Description":"Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. "
-},
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"jlopezi",
-  "Recurrences":"3",
-  "Description":"In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus."
-},
-
-{"Severity":"P1",
-  "Status":"Open",
-  "Owner":"pbarnesj",
-  "Recurrences":"5",
-  "Description":"Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget. "
-  }
-
-]
+[{"Submission timestamp":"2016-08-12 07:19:55","Customer name":"Reilly-Schmeler","Customer email address":"egilbert0@t.co","Description":"Exposure to excessive heat of man-made origin, init encntr","Status":"Close","Closed timestamp":"2016-02-09 11:38:32","Employee name":"Emily"},
+{"Submission timestamp":"2016-08-23 11:21:01","Customer name":"Farrell-Grady","Customer email address":"mmedina1@taobao.com","Description":"Unsp inj musc/tend ant grp at low leg level, unsp leg, init","Status":"Close","Closed timestamp":"2016-09-03 19:27:52","Employee name":"Marilyn"},
+{"Submission timestamp":"2016-10-20 03:45:14","Customer name":"Klein, Morissette and Grimes","Customer email address":"bhunt2@narod.ru","Description":"Monteggia's fx unsp ulna, subs for clos fx w delay heal","Status":"Open","Closed timestamp":"2016-03-18 07:44:44","Employee name":"Bobby"},
+{"Submission timestamp":"2016-08-28 01:32:53","Customer name":"Bechtelar, Hammes and Kirlin","Customer email address":"bhansen3@narod.ru","Description":"Oth injury of other blood vessels at forearm level, unsp arm","Status":"Open","Closed timestamp":"2016-10-05 18:12:48","Employee name":"Barbara"},
+{"Submission timestamp":"2016-10-24 11:51:57","Customer name":"Cole-Gulgowski","Customer email address":"jortiz4@prnewswire.com","Description":"Nondisp fx of head of r rad, 7thR","Status":"In Progress","Closed timestamp":"2016-03-14 09:34:19","Employee name":"Joe"},
+{"Submission timestamp":"2015-11-17 14:01:58","Customer name":"Kautzer-Fisher","Customer email address":"sdixon5@ft.com","Description":"Other dislocation of left patella, initial encounter","Status":"Open","Closed timestamp":"2016-08-14 12:57:24","Employee name":"Stephen"},
+{"Submission timestamp":"2016-05-17 03:43:46","Customer name":"McLaughlin, Wilderman and Rodriguez","Customer email address":"bperkins6@cnet.com","Description":"Oth fx shaft of rad, r arm, 7thR","Status":"Close","Closed timestamp":"2016-07-29 13:32:28","Employee name":"Betty"},
+{"Submission timestamp":"2016-05-11 20:47:34","Customer name":"McDermott, Cummerata and Rutherford","Customer email address":"ahall7@webs.com","Description":"Superficial foreign body of r bk wl of thorax, sequela","Status":"Open","Closed timestamp":"2016-04-05 06:31:20","Employee name":"Aaron"},
+{"Submission timestamp":"2016-03-30 00:12:47","Customer name":"Stoltenberg-Koss","Customer email address":"kwatson8@naver.com","Description":"Disp fx of 5th metatarsal bone, l ft, subs for fx w malunion","Status":"Close","Closed timestamp":"2015-11-04 21:53:30","Employee name":"Kenneth"},
+{"Submission timestamp":"2016-02-02 12:03:48","Customer name":"Sawayn Group","Customer email address":"jjordan9@pagesperso-orange.fr","Description":"Lead-induced gout, left hand","Status":"In Progress","Closed timestamp":"2016-02-12 09:49:37","Employee name":"Joe"},
+{"Submission timestamp":"2016-03-26 07:55:28","Customer name":"Hyatt Group","Customer email address":"jwebba@4shared.com","Description":"Poisoning by antiallerg/antiemetic, intentional self-harm","Status":"In Progress","Closed timestamp":"2016-01-26 11:27:03","Employee name":"Jerry"},
+{"Submission timestamp":"2016-10-08 13:41:01","Customer name":"Metz-Feest","Customer email address":"rromerob@squarespace.com","Description":"Chronic acquired pure red cell aplasia","Status":"Open","Closed timestamp":"2015-12-25 20:11:02","Employee name":"Russell"},
+{"Submission timestamp":"2016-04-18 20:26:07","Customer name":"Corwin-Wilderman","Customer email address":"mdanielsc@npr.org","Description":"Toxic effect of ethanol, accidental (unintentional), subs","Status":"In Progress","Closed timestamp":"2016-07-30 22:23:45","Employee name":"Matthew"},
+{"Submission timestamp":"2016-01-16 21:30:18","Customer name":"Dietrich, Hackett and Kovacek","Customer email address":"jnelsond@plala.or.jp","Description":"Sprain of joints and ligaments of unsp parts of head, sqla","Status":"In Progress","Closed timestamp":"2016-01-12 19:50:21","Employee name":"Jacqueline"},
+{"Submission timestamp":"2016-06-10 11:50:59","Customer name":"Murphy, Murphy and Abernathy","Customer email address":"jalexandere@senate.gov","Description":"Acquired absence of bilateral breasts and nipples","Status":"Close","Closed timestamp":"2016-06-28 12:20:37","Employee name":"Judith"},
+{"Submission timestamp":"2016-04-23 23:53:23","Customer name":"Hessel-Turcotte","Customer email address":"sevansf@nationalgeographic.com","Description":"Displ transverse fx shaft of r fibula, 7thQ","Status":"Close","Closed timestamp":"2016-05-23 00:30:14","Employee name":"Scott"},
+{"Submission timestamp":"2016-08-25 09:19:25","Customer name":"Johns-Veum","Customer email address":"jlawrenceg@deviantart.com","Description":"Lacerat unsp blood vessel at shldr/up arm, right arm, init","Status":"Open","Closed timestamp":"2016-04-05 19:23:43","Employee name":"Joe"},
+{"Submission timestamp":"2016-09-26 21:11:35","Customer name":"Wolff Group","Customer email address":"lolsonh@jimdo.com","Description":"Burn of first degree of left knee","Status":"Close","Closed timestamp":"2016-10-18 15:23:37","Employee name":"Louise"},
+{"Submission timestamp":"2016-05-12 16:23:18","Customer name":"Sawayn-Armstrong","Customer email address":"jmurphyi@imgur.com","Description":"Non-ABO incompat react due to tranfs of bld/bld prod, unsp","Status":"In Progress","Closed timestamp":"2016-10-14 18:15:43","Employee name":"Jane"},
+{"Submission timestamp":"2016-08-23 14:50:42","Customer name":"Hoeger-Fay","Customer email address":"kthomasj@networksolutions.com","Description":"Burn of third degree of unspecified wrist, sequela","Status":"Close","Closed timestamp":"2016-02-13 06:23:49","Employee name":"Katherine"}]

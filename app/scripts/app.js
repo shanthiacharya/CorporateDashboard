@@ -12,7 +12,7 @@
 //   .module('dashMetricsApp', []);
 
 
-  angular.module('dashMetricsApp',['ui.router','d3','highcharts-ng','datatables'])
+  angular.module('dashMetricsApp',['ui.router','highcharts-ng','datatables'])
     .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -29,7 +29,7 @@
     .state('analytics', {
       url:'/analytics',
       templateUrl: 'views/analytics.html',
-      controller: 'MainCtrl as main'
+      controller: 'LineGraphIssuesAverageCtrl'
 
     })
 
@@ -37,7 +37,7 @@
     .state('reports', {
       url:'/reports',
       templateUrl: 'views/reports.html',
-      controller: 'MainCtrl as main'
+      controller: 'DatatableCtrl'
     })
 
 

@@ -67,10 +67,8 @@
            text: ''
          },
          xAxis: {
-           categories,
+           categories:categories,
            crosshair: true,
-           // startOnTick: true,
-           // endOnTick: true,
            tickMarkPlacement: "on",
            startOnTick: false,
            endOnTick: false,
@@ -284,7 +282,7 @@
        // },
 
        xAxis: {
-         categories,
+         categories:catgories,
          crosshair: true
        },
 

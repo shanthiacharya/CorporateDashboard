@@ -223,7 +223,7 @@
       // },
 
       xAxis: {
-        categories,
+        categories:categories,
         crosshair: true
       },
 
@@ -322,7 +322,7 @@
         text: ''
       },
       xAxis: {
-        categories,
+        categories:categories,
         crosshair: true,
         // startOnTick: true,
         // endOnTick: true,

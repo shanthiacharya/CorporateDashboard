@@ -158,7 +158,7 @@
    refreshEmployeeMap();
    $scope.$on('$destroy', function() {
      // Make sure that the interval is destroyed too
-     $timeout.cancel( timer );
+     $timeout.cancel( stop );
      stop = undefined;
      console.log ("Cancelled Timer for main");
    });
@@ -259,7 +259,7 @@
 
   $scope.$on('$destroy', function() {
     // Make sure that the interval is destroyed too
-    $timeout.cancel( timer );
+    $timeout.cancel( stop );
     stop = undefined;
     console.log ("Cancelled Timer for main");
   }); // end scope destroy
@@ -359,7 +359,7 @@
   refreshIssueCount();
   $scope.$on('$destroy', function() {
     // Make sure that the interval is destroyed too
-    $timeout.cancel( timer );
+    $timeout.cancel( stop );
     stop = undefined;
     console.log ("Cancelled Timer for main");
   });

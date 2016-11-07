@@ -104,7 +104,7 @@
    refreshIssueWeekAverage();
    $scope.$on('$destroy', function() {
      // Make sure that the interval is destroyed too
-     $timeout.cancel( timer );
+     $timeout.cancel( stop );
      stop = undefined;
      console.log ("Cancelled Timer for analytics");
    });
@@ -208,7 +208,7 @@
    refreshIssueBreakDown();
    $scope.$on('$destroy', function() {
      // Make sure that the interval is destroyed too
-     $timeout.cancel( timer );
+     $timeout.cancel( stop );
      stop = undefined;
      console.log ("Cancelled Timer for analytics");
    });
@@ -282,7 +282,7 @@
        // },
 
        xAxis: {
-         categories:catgories,
+         categories:categories,
          crosshair: true
        },
 
@@ -317,7 +317,7 @@
  refreshIssueByRegion();
  $scope.$on('$destroy', function() {
    // Make sure that the interval is destroyed too
-   $timeout.cancel( timer );
+   $timeout.cancel( stop );
    stop = undefined;
    console.log ("Cancelled Timer for analytics");
  });

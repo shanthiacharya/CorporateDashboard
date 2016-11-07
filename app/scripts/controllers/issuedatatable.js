@@ -40,7 +40,7 @@
 
      $scope.$on('$destroy', function() {
        // Make sure that the interval is destroyed too
-      $timeout.cancel( timer );
+      $timeout.cancel( stop );
       stop = undefined;
       console.log ("Cancelled Timer for datatable");
     }); // end scope destroy
